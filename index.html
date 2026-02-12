@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>wtsittoday!?</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #0b0f0c;
+    color: #00ff9c;
+    font-family: "Courier New", monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .terminal {
+    width: 90%;
+    max-width: 800px;
+    background: #050805;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 255, 156, 0.2);
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+
+  .line {
+    margin: 8px 0;
+    white-space: pre-wrap;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 18px;
+    background: #00ff9c;
+    margin-left: 5px;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  button {
+    margin-top: 15px;
+    background: transparent;
+    border: 1px solid #00ff9c;
+    color: #00ff9c;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  button:hover {
+    background: #00ff9c;
+    color: #000;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="terminal" id="terminal">
+  <div class="line">> initializing Ameerrr...</div>
+  <div class="line">> loading memories...</div>
+  <div class="line">> detecting personality: inspiring ✔ ambitious ✔ handsome ✔</div>
+  <div class="line">> warning: user feels like home 🏠</div>
+  <div class="line"></div>
+
+  <button onclick="levelOne()" id="runBtn">start journey</button>
+</div>
+
+<script>
+const terminal = document.getElementById("terminal");
+
+function addLine(text) {
+  const div = document.createElement("div");
+  div.className = "line";
+  div.textContent = text;
+  terminal.appendChild(div);
+  terminal.scrollTop = terminal.scrollHeight;
+}
+
+/* ================= LEVEL 1 ================= */
+
+function levelOne() {
+  document.getElementById("runBtn").style.display = "none";
+
+  const level1 = [
+    "",
+    "> YOU ARE...",
+    "> accessing core files...",
+    "> file found: best_friend.sys ✨",
+    "",
+    "You are the kind of person",
+    "who turns chaos into calm,",
+    "jokes into comfort,",
+    "and dreams into plans...",
+    "",
+    "> status: inspiring presence detected",
+    "",
+    "> press ENTER to continue ▶"
+  ];
+
+  print(level1, enableLevelTwo);
+}
+
+function enableLevelTwo() {
+  document.addEventListener("keydown", function handler(e) {
+    if (e.key === "Enter") {
+      document.removeEventListener("keydown", handler);
+      levelTwo();
+    }
+  });
+}
+
+/* ================= LEVEL 2 ================= */
+
+function levelTwo() {
+  const level2 = [
+    "",
+    "> HOW IT FEELS LIKE, TO HAVE YOU IN OUR LIVES...",
+    "",
+    "Your goals are high,",
+    "but your presence is valuable,",
+    "and somehow both inspire...",
+    "",
+    "No matter how far you go,",
+    "remember:",
+    "you already changed lives,",
+    "",
+    "especially mine.",
+    "",
+    "> press ENTER to continue ▶"
+  ];
+
+  print(level2, enableLevelThree);
+}
+
+function enableLevelThree() {
+  document.addEventListener("keydown", function handler(e) {
+    if (e.key === "Enter") {
+      document.removeEventListener("keydown", handler);
+      levelThree();
+    }
+  });
+}
+
+/* ================= LEVEL 3 ================= */
+
+function levelThree() {
+  const level3 = [
+    "",
+    "> THE FUTURE...",
+    "",
+    "Hero. A great adventurer on track.",
+    "Can’t wait to see you shine.",
+    "I know you’ll win — quietly, brilliantly.",
+    "",
+    "Wish to see you chase all your dreams, kano!!!",
+    "",
+    "> system message:",
+    "Ameeeeerrrrrrr, Cheers to 23!!! ❤️",
+    "Never stop being and becoming you.",
+    "",
+    "> final status:",
+    "> legacy loading… ✨"
+  ];
+
+  print(level3, showCursor);
+}
+
+function showCursor() {
+  const div = document.createElement("div");
+  div.className = "line";
+  div.innerHTML = "> <span class='cursor'></span>";
+  terminal.appendChild(div);
+}
+
+/* ================= PRINT ENGINE ================= */
+
+function print(lines, callback) {
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < lines.length) {
+      addLine(lines[i]);
+      i++;
+    } else {
+      clearInterval(interval);
+      if (callback) callback();
+    }
+  }, 700);
+}
+
+console.log("Yes, this page is about you. Better don't escape it.");
+</script>
+
+</body>
+</html>
